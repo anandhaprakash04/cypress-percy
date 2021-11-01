@@ -25,4 +25,4 @@ jobs:
         env:
             PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         with:
-            command: yarn percy:run -s 'cypress/integration/visual-tests/percy-visual-tests/**/*'
+            command: yarn percy:run

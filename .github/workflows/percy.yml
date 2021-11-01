@@ -1,0 +1,28 @@
+name: Percy Visual Tests
+
+on: [push]
+
+jobs:
+  Run-Percy-Visual-Tests:
+    runs-on: ubuntu-latest
+    # if: "!contains(${GITHUB_REF#refs/heads/}, $(git rev-parse --short HEAD))"
+#    if: "${GITHUB_REF#refs/heads/}.contains($(git rev-parse --short HEAD))"
+    steps:
+      - name: Checkout files
+        uses: actions/checkout@v2
+      - name: Get branch and short sha
+        id: vars
+        shell: bash
+        run: |
+          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+      - name: Print commit and sha
+        run: |
+          echo "Branch: ${{ steps.vars.outputs.branch }}"
+          echo "Sha: ${{ steps.vars.outputs.sha_short }}"
+      - name: Run tests
+        uses: cypress-io/github-action@v2
+        env:
+            PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+        with:
+            command: yarn percy:run

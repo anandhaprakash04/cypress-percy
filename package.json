@@ -1,0 +1,16 @@
+{
+  "name": "cypress-percy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/anandhaprakash04/cypress-percy.git",
+  "author": "Anand <56091994+anandhaprakash-mani@users.noreply.github.com>",
+  "license": "MIT",
+  "scripts": {
+    "percy:run": "PERCY_TOKEN=650001a5689874d0b700e637e85873debdddf4d316e9d7866029d069a14a08fc yarn percy exec cypress run"
+  },
+  "devDependencies": {
+    "@percy/cli": "^1.0.0-beta.70",
+    "@percy/cypress": "^3.1.1",
+    "cypress": "^8.7.0"
+  }
+}
